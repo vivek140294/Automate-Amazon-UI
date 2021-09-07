@@ -1,0 +1,18 @@
+from Google import Create_Service
+
+CLIENT_SECRET_FILE = 'Googlecloud.json'
+API_NAME = 'Drive'
+API_VERSION ='v3'
+SCOPES = ['https//www.googleapis.com/auth/drive']
+
+service = Create_Service(CLIENT_SECRET_FILE, API_NAME, API_VERSION, SCOPES)
+
+Test_files = ['Googlefile' , 'Test Google file']
+
+for Test_file in Test_files:
+    file_metadata = {
+        'name' : Test_file
+        'mimeType' : 'application/vnd.google-apps.folder'
+    }
+
+    service.files().create(body=file_metadata).execute()
