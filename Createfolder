@@ -1,4 +1,6 @@
 from Google import Create_Service
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
 CLIENT_SECRET_FILE = 'Googlecloud.json'
 API_NAME = 'Drive'
@@ -16,3 +18,17 @@ for Test_file in Test_files:
     }
 
     service.files().create(body=file_metadata).execute()
+    
+
+
+gauth = GoogleAuth
+
+gauth.LocalwebserverAuth()
+
+drive = GoogleDrive(gauth)
+
+file1 = drive.CreateFile({'title' : 'Doc.txt'})
+
+file1.SetConsentString('my name is Vivek')
+
+file1.Upload()
